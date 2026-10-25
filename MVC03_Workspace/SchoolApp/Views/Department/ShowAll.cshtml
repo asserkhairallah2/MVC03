@@ -1,0 +1,38 @@
+@model IEnumerable<SchoolApp.Models.Department>
+
+@{
+    ViewData["Title"] = "All Departments";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Departments</h2>
+        <a asp-controller="Department" asp-action="Add" class="btn btn-success">Add New Department</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Department Name</th>
+                <th>Manager Name</th>
+                <th>Total Students</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dept in Model)
+            {
+                <tr>
+                    <td>@dept.Id</td>
+                    <td>@dept.Name</td>
+                    <td>@dept.MgrName</td>
+                    <td>@(dept.Students?.Count ?? 0)</td>
+                    <td>
+                        <a href="/Department/ShowDetails?id=@dept.Id" class="btn btn-info btn-sm">Details (ViewModel)</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
